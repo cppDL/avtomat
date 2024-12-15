@@ -20,3 +20,12 @@ image_dir = "dataset/images/"
 mask_dir = "dataset/masks/"
 images, masks = load_data(image_dir, mask_dir)
 masks = masks / 255.0  # Normalize masks to [0, 1]
+
+from sklearn.model_selection import train_test_split
+
+train_images, val_images, train_masks, val_masks = train_test_split(
+    images, masks, test_size=0.2, random_state=42
+)
+
+print(f"Training set size: {len(train_images)}")
+print(f"Validation set size: {len(val_images)}")
